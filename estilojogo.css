@@ -5,6 +5,7 @@
 	height: 500px;
 	padding-top: 1%;
 	position: relative;
+	cursor: url(imagens/macrofago1.cur);
 }
 
 .bacteria {

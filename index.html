@@ -9,20 +9,27 @@
 	<link rel="stylesheet" href="estilojogo.css">
 	<script>
 		
+		let temporizador;
+
 		function novo_jogo() {
 			let pontuacao = document.querySelector("#pontuacao")
 			pontuacao.value = 0;
+			let bacterias = document.querySelectorAll('.bacteria');
+			for (let i = 0; i < bacterias.length; i++) {
+				bacterias[i].remove();
+			}
 			criar_bacterias(10);
 
-			
-			setInterval(function () {
+			clearInterval(temporizador);
+			temporizador = setInterval(function () {
 				let bacterias = document.querySelectorAll('.bacteria');
 				let contagem = bacterias.length;
 				/*cria bacterias com base no que sobrou*/
 				criar_bacterias(contagem);
 				bacterias = document.querySelectorAll('.bacteria');
-				if (bacterias.length >= 12){
+				if (bacterias.length >= 50){
 					alert("Game Over");
+					clearInterval(temporizador);
 				}
 			}, 3000);
 		}
@@ -65,6 +72,7 @@
 		}
 
 		
+		
 	</script>
 </head>
 
@@ -73,10 +81,16 @@
 		<h2>GAME OF IMUNE SYSTEM</h2>
 	</header>
 
+
+
 	<nav>
 		<label for="pontuacao">Pontuação</label>
 		<input type="number" id="pontuacao" value="0">
-		<button onclick="novo_jogo()">Novo jogo</button> 
+		<button onclick="novo_jogo()">Novo jogo</button>
+		<input type="radio" name="defesa" id="antibiotico">
+		<label for="macrofago">Macrófago</label>
+		<input type="radio" name="defesa" id="macrofago">
+		<label for="antibiotico">Antibiótico</label>
 	</nav>
 
 	<main>
@@ -89,6 +103,7 @@
 	<footer>
 		<p>© Desenvolvido por Alessandra Oliveira</p>
 	</footer>
+
 
 </body>
 </html>
